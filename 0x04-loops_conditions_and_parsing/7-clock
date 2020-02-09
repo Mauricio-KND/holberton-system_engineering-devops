@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Displays time 12 hours 59 minutes. Hours from 0-12. Minutes 1-59
+#Displays time 12 hours 59 minutes. Hours from 0-12. Minutes 1-59.
 ((h=0)); while ((h <= 12)); do
             ((m=1))
             echo "Hour: $h"
