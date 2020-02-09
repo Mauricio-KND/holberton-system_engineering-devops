@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Displays the content of the file /etc/passwd.
+while true; do sudo cat /etc/passwd | cut -f1,3,6 -d':'
+break; done
