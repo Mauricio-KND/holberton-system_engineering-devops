@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Numbers 1-20. Bad luck from China 4th itrtn, from Japan 9th itrtn, from Italy 17th itrtn.
+((i=1))
+while [ $i -le 20 ]; do echo "$i"
+    case $i in
+	4) echo "bad luck from China";;
+    9) echo "bad luck from Japan";;
+	17) echo "bad luck from Italy";;
+	esac
+	(( i++ ))
+done
