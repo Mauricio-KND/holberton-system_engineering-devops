@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #Displays Holberton School 10 times. 9th iteration displays Hi.
 ((i=0)); while ((i < 10)); do echo "Holberton School"; if ((i == 8)); then echo "Hi"; fi
-                ((i++)); done
+            ((i++)); done

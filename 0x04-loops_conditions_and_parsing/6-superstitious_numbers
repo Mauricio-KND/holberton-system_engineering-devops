@@ -7,5 +7,4 @@ while [ $i -le 20 ]; do echo "$i"
     9) echo "bad luck from Japan";;
 	17) echo "bad luck from Italy";;
 	esac
-	(( i++ ))
-done
+	(( i++ )); done
