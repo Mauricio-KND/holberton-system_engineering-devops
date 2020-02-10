@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# displays "To infinity and beyond" indefinitely and "I am invincible!!!" when receiving a SIGTERM signal
-#!/usr/bin/env bash
-# displays "To infinity and beyond" indefinitely and "I am invincible!!!" when receiving a SIGTERM signal
-
+#Displays: To infinity and beyond indefinitely. Sleep 2 between iteration. I am invincible!!! receiving SIGTERM signal.
 trap "echo I am invincible!!!" SIGTERM
 while true
 do
