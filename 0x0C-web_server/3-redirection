@@ -1,8 +1,33 @@
 #!/usr/bin/env bash
 # Install nginx on a web server and redirect.
-sudo apt-get -y update
-sudo apt-get -y install nginx
+sudo apt-get -y update && sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
-sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Mauricio-KND permanent;/" /etc/nginx/sites-available/default
-sudo service nginx start
+sudo /etc/init.d/nginx stop
+block="/etc/nginx/sites-available/default"
+sudo tee $block > /dev/null <<EOF                                    
+server {                                                             
+ 
+    listen 80 default_server;                                        
+ 
+    listen [::]:80 default_server;                                   
+ 
+    root /var/www/html;                                              
+ 
+    index index.html index.htm index.nginx-debian.html;              
+ 
+    server_name _;                                                   
+ 
+    location / {                                                     
+ 
+        try_files \$uri \$uri/ =404;                                 
+ 
+    }
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }                                                                
+ 
+}                                                                    
+EOF
+sudo echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
+
+sudo nginx -t && sudo /etc/init.d/nginx start
