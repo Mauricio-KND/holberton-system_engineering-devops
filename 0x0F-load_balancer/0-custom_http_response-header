@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
 # Configures new Ubuntu machine to the requirements asked.
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo service nginx start
-sudo ufw allow 'Nginx HTTP'
-sudo chmod 777 /usr/share/nginx/html/index.html
-echo "Holberton School" > /usr/share/nginx/html/index.html
-sudo sed -i "38i\ \tlocation /redirect_me {\n\treturn 301;\n\t}\n" /etc/nginx/sites-enabled/default
-sudo touch /usr/share/nginx/html/404.html
-sudo chmod 777 /usr/share/nginx/html/404.html
-echo -e "Ceci n'est pas une page\n" > /usr/share/nginx/404.html
-change="#error_page 404"
-new="error_page 404"
-sudo sed -i "s/$change/$new/" /etc/nginx/sites-enabled/default
-sudo sed -i "28i\ \tadd_header X-Served-By $HOSTNAME;\n" /etc/nginx/sites-enabled/default
-sudo service nginx restart
+apt-get update
+apt-get -y install nginx
+http_header="add_header X-Served-By $HOSTNAME;"
+sed -i "/sendfile on;/a $http_header" /etc/nginx/nginx.conf
+service nginx restart
