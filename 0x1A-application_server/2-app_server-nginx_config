@@ -14,14 +14,15 @@
 # Default server configuration
 #
 server {
-        # Listen on port 80
+        # Nginx serve the page both locally and public IP on port 80.
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        # Serve /airbnb-onepage/ route.
+        # Nginx serve the page from route "/airbnb-onepage/".
+        # Nginx proxy requests the process listening on port 5000.
         location /airbnb-onepage {
-                 include proxy_params;
-                 proxy_pass http://0.0.0.0:5000/airbnb-onepage;
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage;
         }
 
         # SSL configuration
@@ -46,10 +47,10 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name _;
-        # Customize HTTP response header
+        # Customize HTTP response header.
         add_header X-Served-By 1299-web-01;
         rewrite ^/redirect_me https://soundcloud.com/k-n-d permanent;
-        # 404 error page
+        # 404 error page.
         error_page 404 /404.html;
         location = /404.html {
                  root /usr/share/nginx/html;
@@ -60,14 +61,14 @@ server {
         location /hbnb_static {
                  alias /data/web_static/current/;
                  autoindex off;
-        }
+                 }
 
         location / {
                  # First attempt to serve request as file, then
                  # as directory, then fall back to displaying a 404.
                  try_files $uri $uri/ =404;
         }
-                                                                                                                    
+
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         #location ~ \.php$ {
